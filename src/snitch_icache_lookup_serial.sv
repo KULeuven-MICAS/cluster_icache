@@ -7,8 +7,6 @@
 `include "common_cells/registers.svh"
 
 /// An actual cache lookup.
-(* no_ungroup *)
-(* no_boundary_optimization *)
 module snitch_icache_lookup_serial import snitch_icache_pkg::*; #(
   parameter config_t CFG = '0,
   /// Configuration input types for SRAMs used in implementation.
@@ -168,17 +166,15 @@ module snitch_icache_lookup_serial import snitch_icache_pkg::*; #(
     for (genvar i = 0; i < CFG.WAY_COUNT; i++) begin : g_sets_rdata
       assign tag_rdata[i] = tag_rdata_flat[i*(CFG.TAG_WIDTH+2)+:CFG.TAG_WIDTH+2];
     end
-    tc_sram_impl #(
-      .DataWidth ( (CFG.TAG_WIDTH+2) * CFG.WAY_COUNT ),
-      .ByteWidth ( CFG.TAG_WIDTH+2                   ),
-      .NumWords  ( CFG.LINE_COUNT                    ),
-      .NumPorts  ( 1                                 ),
-      .impl_in_t ( sram_cfg_tag_t                    )
+
+    snitch_icache_tag_serial #(
+      .CFG             ( CFG              ),
+      .sram_cfg_data_t ( sram_cfg_data_t  )
     ) i_tag (
       .clk_i   ( clk_i                      ),
       .rst_ni  ( rst_ni                     ),
       .impl_i  ( sram_cfg_tag_i             ),
-      .impl_o  (  ),
+      .impl_o  (                            ),
       .req_i   ( |tag_enable                ),
       .we_i    ( tag_write                  ),
       .addr_i  ( tag_addr                   ),
@@ -283,21 +279,18 @@ module snitch_icache_lookup_serial import snitch_icache_pkg::*; #(
     end
   end
 
-  tc_sram_impl #(
-    .DataWidth ( CFG.LINE_WIDTH                 ),
-    .NumWords  ( CFG.LINE_COUNT * CFG.WAY_COUNT ),
-    .NumPorts  ( 1                              ),
-    .impl_in_t ( sram_cfg_data_t                )
+  snitch_icache_data_serial#(
+    .CFG             ( CFG              ),
+    .sram_cfg_data_t ( sram_cfg_data_t  )
   ) i_data (
     .clk_i   ( clk_i           ),
     .rst_ni  ( rst_ni          ),
     .impl_i  ( sram_cfg_data_i ),
     .impl_o  (  ),
     .req_i   ( data_enable     ),
-    .we_i    ( data_write      ),
+    .write_i ( data_write      ),
     .addr_i  ( data_addr       ),
     .wdata_i ( data_wdata      ),
-    .be_i    ( '1              ),
     .rdata_o ( data_rdata      )
   );
 
