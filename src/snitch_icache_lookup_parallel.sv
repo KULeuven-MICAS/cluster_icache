@@ -5,6 +5,8 @@
 // Fabian Schuiki <fschuiki@iis.ee.ethz.ch>
 
 /// An actual cache lookup.
+(* no_ungroup *)
+(* no_boundary_optimization *)
 module snitch_icache_lookup_parallel import snitch_icache_pkg::*; #(
   parameter config_t CFG = '0,
   /// Configuration input types for SRAMs used in implementation.

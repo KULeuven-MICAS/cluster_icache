@@ -7,6 +7,8 @@
 `include "common_cells/registers.svh"
 
 /// An actual cache lookup.
+(* no_ungroup *)
+(* no_boundary_optimization *)
 module snitch_icache_lookup_serial import snitch_icache_pkg::*; #(
   parameter config_t CFG = '0,
   /// Configuration input types for SRAMs used in implementation.
