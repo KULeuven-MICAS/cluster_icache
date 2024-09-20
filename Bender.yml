@@ -30,6 +30,10 @@ sources:
   - src/snitch_icache_l0.sv
   - src/snitch_icache_refill.sv
   - src/snitch_icache_lfsr.sv
+  - src/snitch_icache_tag.sv
+  - src/snitch_icache_tag_serial.sv
+  - src/snitch_icache_data.sv
+  - src/snitch_icache_data_serial.sv  
   - src/snitch_icache_lookup_parallel.sv
   - src/snitch_icache_lookup_serial.sv
   # Level 2
