@@ -22,7 +22,7 @@ module snitch_icache_tag #(
   input  logic                                          ram_write_i,
   input  logic [CFG.COUNT_ALIGN-1:0]                    ram_addr_i,
   input  logic                      [CFG.TAG_WIDTH+1:0] ram_wtag_i,
-  output logic [  CFG.WAY_COUNT-1:0][CFG.TAG_WIDTH+1:0] ram_rtag_o
+  output logic [CFG.TAG_WIDTH+1:0] ram_rtag_o [  CFG.WAY_COUNT-1:0]
 );
 
   for (genvar i = 0; i < CFG.WAY_COUNT; i++) begin: g_cache_tag_sets

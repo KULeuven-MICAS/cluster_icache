@@ -22,7 +22,7 @@ module snitch_icache_data #(
   input  logic                                           ram_write_i,
   input  logic [CFG.COUNT_ALIGN-1:0]                     ram_addr_i,
   input  logic                      [CFG.LINE_WIDTH-1:0] ram_wdata_i,
-  output logic [  CFG.WAY_COUNT-1:0][CFG.LINE_WIDTH-1:0] ram_rdata_o
+  output logic [CFG.LINE_WIDTH-1:0] ram_rdata_o [  CFG.WAY_COUNT-1:0]
 );
 
   for (genvar i = 0; i < CFG.WAY_COUNT; i++) begin: g_cache_data_sets
