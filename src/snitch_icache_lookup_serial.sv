@@ -279,7 +279,7 @@ module snitch_icache_lookup_serial import snitch_icache_pkg::*; #(
     end
   end
 
-  snitch_icache_data_serial#(
+  snitch_icache_data_serial #(
     .CFG             ( CFG              ),
     .sram_cfg_data_t ( sram_cfg_data_t  )
   ) i_data (
