@@ -25,7 +25,7 @@ module snitch_icache_tag #(
   output logic [  CFG.WAY_COUNT-1:0][CFG.TAG_WIDTH+1:0] ram_rtag_o
 );
 
-  for (genvar i = 0; i < CFG.SET_COUNT; i++) begin: g_cache_tag_sets
+  for (genvar i = 0; i < CFG.WAY_COUNT; i++) begin: g_cache_tag_sets
     tc_sram_impl #(
       .NumWords   ( CFG.LINE_COUNT  ),
       .DataWidth  ( CFG.TAG_WIDTH+2 ),
