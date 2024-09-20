@@ -169,14 +169,14 @@ module snitch_icache_lookup_serial import snitch_icache_pkg::*; #(
 
     snitch_icache_tag_serial #(
       .CFG             ( CFG              ),
-      .sram_cfg_data_t ( sram_cfg_data_t  )
+      .sram_cfg_tag_t ( sram_cfg_tag_t  )
     ) i_tag (
       .clk_i   ( clk_i                      ),
       .rst_ni  ( rst_ni                     ),
       .impl_i  ( sram_cfg_tag_i             ),
       .impl_o  (                            ),
       .req_i   ( |tag_enable                ),
-      .we_i    ( tag_write                  ),
+      .write_i ( tag_write                  ),
       .addr_i  ( tag_addr                   ),
       .wdata_i ( {CFG.WAY_COUNT{tag_wdata}} ),
       .be_i    ( tag_enable                 ),

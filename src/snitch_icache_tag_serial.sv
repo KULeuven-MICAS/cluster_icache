@@ -13,12 +13,12 @@
 module snitch_icache_tag_serial #(
   parameter snitch_icache_pkg::config_t CFG = '0,
   /// Configuration input types for SRAMs used in implementation.
-  parameter type sram_cfg_data_t    = logic
+  parameter type sram_cfg_tag_t    = logic
 )(
   input  logic                                                clk_i,
   input  logic                                                rst_ni,
-  input  sram_cfg_data_t                                      impl_i,
-  output sram_cfg_data_t                                      impl_o,
+  input  sram_cfg_tag_t                                      impl_i,
+  output sram_cfg_tag_t                                      impl_o,
   input  logic                                                req_i,
   input  logic                                                write_i,
   input  logic [CFG.COUNT_ALIGN-1:0]                          addr_i,
