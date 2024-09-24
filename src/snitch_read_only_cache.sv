@@ -25,7 +25,7 @@ module snitch_read_only_cache import snitch_icache_pkg::*; #(
   parameter int unsigned AxiUserWidth = 0,
   parameter int unsigned MaxTrans     = 0,
   parameter int unsigned NrAddrRules  = 1,
-  parameter bit          SerialLookup = 1,
+  parameter bit          SerialLookup = 0,
   parameter type slv_req_t = logic,
   parameter type slv_rsp_t = logic,
   parameter type mst_req_t = logic,
