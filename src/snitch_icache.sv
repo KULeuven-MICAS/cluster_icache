@@ -527,44 +527,7 @@ module snitch_icache import snitch_icache_pkg::*; #(
   end
 
   if (SERIAL_LOOKUP) begin : gen_serial_lookup
-    snitch_icache_lookup_serial #(
-      .CFG             ( CFG             ),
-      .sram_cfg_tag_t  ( sram_cfg_tag_t  ),
-      .sram_cfg_data_t ( sram_cfg_data_t )
-    ) i_lookup (
-      .clk_i,
-      .rst_ni,
-
-      .flush_valid_i   ( flush_valid_lookup        ),
-      .flush_ready_o   ( flush_ready_lookup        ),
-      .icache_events_o ( icache_l1_events_o        ),
-
-      .in_addr_i       ( prefetch_lookup_req.addr  ),
-      .in_id_i         ( prefetch_lookup_req.id    ),
-      .in_valid_i      ( prefetch_lookup_req_valid ),
-      .in_ready_o      ( prefetch_lookup_req_ready ),
-
-      .out_addr_o      ( lookup_addr               ),
-      .out_id_o        ( lookup_id                 ),
-      .out_set_o       ( lookup_set                ),
-      .out_hit_o       ( lookup_hit                ),
-      .out_data_o      ( lookup_data               ),
-      .out_error_o     ( lookup_error              ),
-      .out_valid_o     ( lookup_valid              ),
-      .out_ready_i     ( lookup_ready              ),
-
-      .write_addr_i    ( write_addr                ),
-      .write_set_i     ( write_set                 ),
-      .write_data_i    ( write_data                ),
-      .write_tag_i     ( write_tag                 ),
-      .write_error_i   ( write_error               ),
-      .write_valid_i   ( write_valid               ),
-      .write_ready_o   ( write_ready               ),
-
-      .sram_cfg_tag_i,
-      .sram_cfg_data_i
-    );
-
+      $info("The serial lookup is not implemented");
   end else begin : gen_parallel_lookup
     snitch_icache_lookup_parallel #(
       .CFG             ( CFG             ),
